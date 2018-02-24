@@ -49,7 +49,7 @@ public class MbeansDescriptorsDigesterSource extends ModelerSource
         digester.setNamespaceAware(false);
         digester.setValidating(false);
         URL url = Registry.getRegistry(null, null).getClass().getResource
-            ("/com/scorpion/huakerongtong/rabbit/util/modeler/mbeans-descriptors.dtd");
+            ("/com/firefly/wcreate/rabbit/util/modeler/mbeans-descriptors.dtd");
         digester.register
             ("-//HKRT Software Foundation//DTD Model MBeans Configuration File",
                 url.toString());

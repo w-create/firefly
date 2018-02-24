@@ -761,7 +761,7 @@ class Generator {
         out.printil("out = pageContext.getOut();");
         out.printil("_jspx_out = out;");
         out.println();
-        out.println("out.write(\"<!-- Hua ke rong tong container@zhengchenglei/910388599@qq.com -->\");");
+        out.println("out.write(\"<!-- wcreate container@zhengchenglei/910388599@qq.com -->\");");
     }
 
     /**

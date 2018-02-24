@@ -149,7 +149,7 @@ public class ContextConfig implements LifecycleListener {
         InputStream is = null;
         try {
             is = ContextConfig.class.getClassLoader().getResourceAsStream(
-                    "com/scorpion/huakerongtong/turnip/startup/Authenticators.properties");
+                    "com/firefly/wcreate/turnip/startup/Authenticators.properties");
             if (is != null) {
                 props.load(is);
             }
@@ -465,7 +465,7 @@ public class ContextConfig implements LifecycleListener {
         /*
          * First check to see if there is a custom mapping for the login
          * method. If so, use it. Otherwise, check if there is a mapping in
-         * com/scorpion/huakerongtong/turnip/startup/Authenticators.properties.
+         * com/firefly/wcreate/turnip/startup/Authenticators.properties.
          */
         Valve authenticator = null;
         if (customAuthenticators != null) {

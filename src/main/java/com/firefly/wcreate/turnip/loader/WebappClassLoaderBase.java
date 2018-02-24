@@ -2280,7 +2280,7 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
      */
     private final void clearReferencesJdbc() {
         InputStream is = getResourceAsStream(
-                "com/scorpion/huakerongtong/turnip/loader/JdbcLeakPrevention.class");
+                "com/firefly/wcreate/turnip/loader/JdbcLeakPrevention.class");
         // We know roughly how big the class will be (~ 1K) so allow 2k as a
         // starting point
         byte[] classBytes = new byte[2048];

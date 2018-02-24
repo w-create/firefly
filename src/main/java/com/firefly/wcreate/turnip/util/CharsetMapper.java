@@ -47,7 +47,7 @@ public class CharsetMapper {
      * Default properties resource name.
      */
     public static final String DEFAULT_RESOURCE =
-      "/com/scorpion/huakerongtong/turnip/util/CharsetMapperDefault.properties";
+      "/com/firefly/wcreate/turnip/util/CharsetMapperDefault.properties";
 
 
     // ---------------------------------------------------------- Constructors

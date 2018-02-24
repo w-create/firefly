@@ -719,7 +719,7 @@ public class Embedded  extends StandardService {
 
     /*
      * Maps the specified login method to the specified authenticator, allowing
-     * the mappings in com/scorpion/huakerongtong/turnip/startup/Authenticators.properties
+     * the mappings in com/firefly/wcreate/turnip/startup/Authenticators.properties
      * to be overridden.
      *
      * @param authenticator Authenticator to handle authentication for the

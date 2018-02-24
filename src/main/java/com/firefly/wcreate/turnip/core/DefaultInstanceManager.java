@@ -88,13 +88,13 @@ public class DefaultInstanceManager implements InstanceManager {
         Log log = catalinaContext.getLogger();
         Set<String> classNames = new HashSet<String>();
         loadProperties(classNames,
-                "com/scorpion/huakerongtong/turnip/core/RestrictedServlets.properties",
+                "com/firefly/wcreate/turnip/core/RestrictedServlets.properties",
                 "defaultInstanceManager.restrictedServletsResource", log);
         loadProperties(classNames,
-                "com/scorpion/huakerongtong/turnip/core/RestrictedListeners.properties",
+                "com/firefly/wcreate/turnip/core/RestrictedListeners.properties",
                 "defaultInstanceManager.restrictedListenersResource", log);
         loadProperties(classNames,
-                "com/scorpion/huakerongtong/turnip/core/RestrictedFilters.properties",
+                "com/firefly/wcreate/turnip/core/RestrictedFilters.properties",
                 "defaultInstanceManager.restrictedFiltersResource", log);
         restrictedClasses = Collections.unmodifiableSet(classNames);
         this.context = context;

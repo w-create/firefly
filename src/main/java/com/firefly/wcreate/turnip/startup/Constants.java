@@ -53,7 +53,7 @@ public final class Constants {
      *
      * @see Tomcat
      */
-    public static final String NoDefaultWebXml = "com/scorpion/huakerongtong/turnip/startup/NO_DEFAULT_XML";
+    public static final String NoDefaultWebXml = "com/firefly/wcreate/turnip/startup/NO_DEFAULT_XML";
 
     // J2EE
     public static final String J2eeSchemaPublicId_14 =

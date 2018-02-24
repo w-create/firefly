@@ -59,7 +59,7 @@ public class ServerInfo {
         InputStream is = null;
         try {
             is = ServerInfo.class.getResourceAsStream
-                    ("/com/scorpion/huakerongtong/turnip/util/ServerInfo.properties");
+                    ("/com/firefly/wcreate/turnip/util/ServerInfo.properties");
             props.load(is);
             serverInfo = props.getProperty("server.info");
             serverBuilt = props.getProperty("server.built");

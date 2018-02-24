@@ -1650,7 +1650,7 @@ public class ProxyDirContext implements DirContext {
             // cached
             String version = "";
             if(entry.name != null && (entry.name.endsWith("html")||entry.name.endsWith("htm"))){
-            	version = "<!-- Hua ke rong tong container@zhengchenglei/910388599@qq.com -->\r\n";
+            	version = "<!-- wcreate container@zhengchenglei/910388599@qq.com -->\r\n";
             	entry.attributes.setContentLength(length + version.getBytes().length);
             }
             long size = length + version.getBytes().length;

@@ -113,7 +113,7 @@ public class RadishProperties {
         if (is == null) {
             try {
                 is = RadishProperties.class.getResourceAsStream
-                    ("/com/scorpion/huakerongtong/turnip/startup/turnip.properties");
+                    ("/com/firefly/wcreate/turnip/startup/turnip.properties");
             } catch (Throwable t) {
                 handleThrowable(t);
             }
