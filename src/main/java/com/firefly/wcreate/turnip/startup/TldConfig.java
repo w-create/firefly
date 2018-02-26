@@ -563,7 +563,7 @@ public final class TldConfig  implements LifecycleListener {
                 tldDigester.setErrorHandler(result);
                 tldDigester.push(this);
                 tldDigester.parse(source);
-            } catch (SAXException s) {
+            } catch (Exception s) {
                 // Hack - makes exception handling simpler
                 throw new IOException(s);
             } finally {

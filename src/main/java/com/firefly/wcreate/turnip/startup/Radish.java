@@ -35,7 +35,10 @@ import com.firefly.wcreate.turnip.Globals;
 import com.firefly.wcreate.turnip.LifecycleException;
 import com.firefly.wcreate.turnip.LifecycleState;
 import com.firefly.wcreate.turnip.Server;
+import com.firefly.wcreate.turnip.connector.Connector;
+import com.firefly.wcreate.turnip.core.StandardContext;
 import com.firefly.wcreate.turnip.security.SecurityConfig;
+import com.firefly.wcreate.conf.SystemProperties;
 import com.firefly.wcreate.juli.ClassLoaderLogManager;
 import com.firefly.wcreate.rabbit.util.ExceptionUtils;
 import com.firefly.wcreate.rabbit.util.digester.Digester;
@@ -43,6 +46,7 @@ import com.firefly.wcreate.rabbit.util.digester.Rule;
 import com.firefly.wcreate.rabbit.util.digester.RuleSet;
 import com.firefly.wcreate.rabbit.util.log.SystemLogHandler;
 import com.firefly.wcreate.rabbit.util.res.StringManager;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXParseException;
@@ -467,7 +471,7 @@ public class Radish {
                 fis = new FileInputStream(file);
                 is.setByteStream(fis);
                 digester.push(this);
-                digester.parse(is);
+                digester.parse(is,this.getClass());
             } catch (Exception e) {
                 log.error("Catalina.stop: ", e);
                 System.exit(1);
@@ -614,7 +618,7 @@ public class Radish {
             try {
                 inputSource.setByteStream(inputStream);
                 digester.push(this);
-                digester.parse(inputSource);
+                digester.parse(inputSource,this.getClass());
             } catch (SAXParseException spe) {
                 log.warn("Catalina.start using " + getConfigFile() + ": " +
                         spe.getMessage());
@@ -655,6 +659,38 @@ public class Radish {
             log.info("Initialization processed in " + ((t2 - t1) / 1000000) + " ms");
         }
 
+    }
+    
+    
+    /**
+     * 
+     */
+    public void fixServerArgument(){
+    	
+    	if(this.getServer() == null){
+    		log.error("server initialize failure !");
+    		System.exit(0);
+    	}
+    	
+    	if(SystemProperties.get("shutdownPort", Integer.class) != null){
+    		this.getServer().setPort(SystemProperties.get("shutdownPort", Integer.class));
+    	}
+    	
+    	for(Connector connector : this.getServer().findServices()[0].findConnectors()){
+    		if(connector.getProtocol() != null && connector.getProtocol().startsWith(SystemProperties.resource.AJP.getValue()) &&
+    				SystemProperties.get(SystemProperties.resource.AJP.getValue(), Integer.class) != null){
+    			connector.setPort(SystemProperties.get(SystemProperties.resource.AJP.getValue(), Integer.class));
+    		}
+	
+    		if(connector.getProtocol() != null && connector.getProtocol().startsWith(SystemProperties.resource.HTTP.getValue()) &&
+    				SystemProperties.get(SystemProperties.resource.HTTP.getValue(), Integer.class) != null){
+    			connector.setPort(SystemProperties.get(SystemProperties.resource.HTTP.getValue(), Integer.class));
+    		}
+    	}
+    	
+    	if(SystemProperties.get(SystemProperties.resource.APPDIR.getValue(), String.class) != null){
+    		((StandardContext)this.getServer().findServices()[0].getContainer().findChildren()[0].findChildren()[0]).setDocBase(SystemProperties.get(SystemProperties.resource.APPDIR.getValue(), String.class)); 
+    	}
     }
 
 

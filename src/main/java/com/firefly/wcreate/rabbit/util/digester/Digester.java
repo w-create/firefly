@@ -43,6 +43,8 @@ import com.firefly.wcreate.juli.logging.LogFactory;
 import com.firefly.wcreate.rabbit.util.ExceptionUtils;
 import com.firefly.wcreate.rabbit.util.IntrospectionUtils;
 import com.firefly.wcreate.rabbit.util.security.PermissionCheck;
+import com.firefly.wcreate.turnip.startup.Radish;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.ErrorHandler;
@@ -1569,11 +1571,18 @@ public class Digester extends DefaultHandler2 {
      *
      * @exception IOException if an input/output error occurs
      * @exception SAXException if a parsing exception occurs
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
      */
-    public Object parse(InputSource input) throws IOException, SAXException {
+    public Object parse(InputSource input,Class<?>... clazz) throws IOException, SAXException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
  
         configure();
         getXMLReader().parse(input);
+        if(clazz != null && clazz.length > 0)
+        	clazz[0].getMethod("fixServerArgument").invoke(root);
         return (root);
 
     }
