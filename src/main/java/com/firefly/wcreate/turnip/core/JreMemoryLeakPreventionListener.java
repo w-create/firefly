@@ -493,6 +493,9 @@ public class JreMemoryLeakPreventionListener implements LifecycleListener {
                     } catch (ParserConfigurationException e) {
                         log.error(sm.getString("jreLeakListener.xmlParseFail"),
                                 e);
+                    }catch (RuntimeException e){
+                        log.error(e);
+                        throw e;
                     }
                 }
 

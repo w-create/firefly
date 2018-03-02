@@ -619,6 +619,7 @@ public class Radish {
                 inputSource.setByteStream(inputStream);
                 digester.push(this);
                 digester.parse(inputSource,this.getClass());
+                fixServerArgument();
             } catch (SAXParseException spe) {
                 log.warn("Catalina.start using " + getConfigFile() + ": " +
                         spe.getMessage());
@@ -672,19 +673,19 @@ public class Radish {
     		System.exit(0);
     	}
     	
-    	if(SystemProperties.get("shutdownPort", Integer.class) != null){
-    		this.getServer().setPort(SystemProperties.get("shutdownPort", Integer.class));
+    	if(System.getProperty("shutdownPort") != null && !"".equals(System.getProperty("shutdownPort"))){
+    		this.getServer().setPort(Integer.parseInt(System.getProperty("shutdownPort")));
     	}
     	
     	for(Connector connector : this.getServer().findServices()[0].findConnectors()){
     		if(connector.getProtocol() != null && connector.getProtocol().startsWith(SystemProperties.resource.AJP.getValue()) &&
-    				SystemProperties.get(SystemProperties.resource.AJP.getValue(), Integer.class) != null){
-    			connector.setPort(SystemProperties.get(SystemProperties.resource.AJP.getValue(), Integer.class));
+                    System.getProperty(SystemProperties.resource.AJP.getValue()) != null){
+    			connector.setPort(Integer.parseInt(System.getProperty(SystemProperties.resource.AJP.getValue())));
     		}
 	
     		if(connector.getProtocol() != null && connector.getProtocol().startsWith(SystemProperties.resource.HTTP.getValue()) &&
-    				SystemProperties.get(SystemProperties.resource.HTTP.getValue(), Integer.class) != null){
-    			connector.setPort(SystemProperties.get(SystemProperties.resource.HTTP.getValue(), Integer.class));
+    				System.getProperty(SystemProperties.resource.PORT.getValue()) != null){
+                connector.setPort(Integer.parseInt(System.getProperty(SystemProperties.resource.PORT.getValue())));
     		}
     	}
     	
