@@ -689,8 +689,8 @@ public class Radish {
     		}
     	}
     	
-    	if(SystemProperties.get(SystemProperties.resource.APPDIR.getValue(), String.class) != null){
-    		((StandardContext)this.getServer().findServices()[0].getContainer().findChildren()[0].findChildren()[0]).setDocBase(SystemProperties.get(SystemProperties.resource.APPDIR.getValue(), String.class)); 
+    	if(System.getProperty(SystemProperties.resource.APPDIR.getValue()) != null){
+    		((StandardContext)this.getServer().findServices()[0].getContainer().findChildren()[0].findChildren()[0]).setDocBase(System.getProperty(SystemProperties.resource.APPDIR.getValue()));
     	}
     }
 

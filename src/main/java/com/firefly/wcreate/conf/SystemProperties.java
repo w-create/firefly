@@ -30,8 +30,8 @@ public class SystemProperties {
 	public static enum resource{
 		
 		PORT("port","The port of application"),
-		VIRDIR("virDir","the directory of virtual application"),
-		APPDIR("appDir","the directory of application"),
+		VIRDIR("vir.dir","the directory of virtual application"),
+		APPDIR("app.dir","the directory of application"),
 		AJP("AJP","AJP protocol"),
 		HTTP("HTTP","HTTP protocol");
 		
